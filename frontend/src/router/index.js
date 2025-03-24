@@ -1,14 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router"
-import Home from "../views/Login.vue"
+import Login from "../views/Login.vue"
 
 const routes = [
 	{
 		path: "/",
 		name: "Login",
-		component: Home,
+		component: Login,
 	},
 	{
-		path: "/Home",
+		path: "/home",
 		name: "Home",
 		// Lazy loading for better performance
 		component: () => import("../views/Home.vue"),
