@@ -1,18 +1,18 @@
 <template>
-	<div class="home">
-		<h1>Welcome to Your Vue.js App</h1>
-		<router-link to="/about">Go to About</router-link>
+	<div class="about">
+		<h1>About Page</h1>
+		<router-link to="/">Back to Home</router-link>
 	</div>
 </template>
 
 <script>
 export default {
-	name: "Home",
+	name: "About",
 }
 </script>
 
 <style scoped>
-.home {
+.about {
 	padding: 2rem;
 	text-align: center;
 }
