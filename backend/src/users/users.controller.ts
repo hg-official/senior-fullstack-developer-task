@@ -1,4 +1,4 @@
-import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
+import { Controller, NotFoundException, Param, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './users.entity';
 
@@ -6,17 +6,14 @@ import { User } from './users.entity';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get()
-  async getAllUsers(): Promise<User[]> {
-    return this.usersService.findAll();
-  }
+  @Post('/login/:username')
+  async login(@Param('username') username: string): Promise<User> {
+    const user = await this.usersService.findByUsername(username);
 
-  @Get(':id')
-  async getUserById(@Param('id') id: number): Promise<User> {
-    const user = await this.usersService.findOne(id);
     if (!user) {
-      throw new NotFoundException(`User with ID ${id} not found`);
+      throw new NotFoundException(`The user - ${username} - not found`);
     }
+
     return user;
   }
 }
