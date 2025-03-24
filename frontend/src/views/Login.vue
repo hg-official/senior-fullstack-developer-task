@@ -1,13 +1,13 @@
 <template>
-	<div class="home">
-		<h1>Home Page</h1>
-		<router-link to="/">Back to Login</router-link>
+	<div class="Login">
+		<h1>Welcome to HyperGuest Test</h1>
+		<router-link to="/home">Go to Home page</router-link>
 	</div>
 </template>
 
 <script>
 export default {
-	name: "Home",
+	name: "Login",
 }
 </script>
 
