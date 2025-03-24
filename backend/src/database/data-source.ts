@@ -1,24 +1,24 @@
 import { User } from '../users/users.entity';
 import 'reflect-metadata';
-import { DataSource } from 'typeorm';
+import { DataSource, DataSourceOptions } from 'typeorm';
+import { config } from 'dotenv';
+import { join } from 'path';
 
-export const AppDataSource = new DataSource({
+config({ path: join(__dirname, '../../.env') });
+
+const dataSourceOptions: DataSourceOptions = {
   type: 'mysql',
   host: process.env.DB_HOST || 'localhost',
-  port: Number(process.env.DB_PORT) || 3306,
-  username: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || 'PWD',
-  database: process.env.DB_NAME || 'test',
+  port: parseInt(process.env.DB_PORT || '3306', 10),
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   entities: [User],
-  //entities: ['**/*.entity.ts'],
-  migrations: ['src/migration/*.ts'],
-  synchronize: false, // ⚠️ Always false in production
+  migrations: [join(__dirname, '..', 'migration', '*{.ts,.js}')],
+  migrationsTableName: 'migrations',
+  synchronize: false,
   logging: true,
-});
-AppDataSource.initialize()
-  .then(() => {
-    console.log('Data Source has been initialized!');
-  })
-  .catch((err) => {
-    console.error('Error during Data Source initialization', err);
-  });
+  migrationsRun: true,
+};
+
+export const AppDataSource = new DataSource(dataSourceOptions);
