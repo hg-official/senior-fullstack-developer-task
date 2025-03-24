@@ -1,0 +1,13 @@
+{
+    "name": "fullstack-permissions-refactor",
+    "version": "1.0.0",
+    "private": true,
+  
+    "scripts": {
+      "install:all": "npm install --workspaces",
+      "start:backend": "npm run start --workspace=backend",
+      "start:frontend": "npm run dev --workspace=frontend",
+      "migrate": "npm run migration:run --workspace=backend"
+    }
+  }
+  
