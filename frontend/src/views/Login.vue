@@ -1,13 +1,8 @@
 <template>
 	<div class="login">
-		<h1>Welcome to HyperGuest Test</h1>
+		<h2>Welcome to HyperGuest Test</h2>
 		<div class="login-form">
-			<input
-				v-model="username"
-				type="text"
-				placeholder="Enter username"
-				@keyup.enter="handleLogin"
-			/>
+			<input v-model="username" type="text" placeholder="Enter username" />
 			<button @click="handleLogin" :disabled="!username">Login</button>
 		</div>
 		<p v-if="error" class="error">{{ error }}</p>
@@ -26,7 +21,9 @@ const error = ref("")
 const handleLogin = async () => {
 	try {
 		error.value = ""
+
 		const response = await axios.post(`/api/users/login/${username.value}`)
+
 		if (response.data) {
 			router.push({
 				path: "/home",
