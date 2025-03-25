@@ -155,3 +155,11 @@ Your task is to implement the following changes:
    - Display the username after "Welcome" message on each page
 
 ⚠️ Note: Any database schema changes must be implemented through migration files.
+
+## ✨ Bonus Assignment
+
+Enhance the user interface by redesigning the navigation bar:
+
+- You can use third-party UI libraries such as Vuetify
+- The design should be modern and user-friendly
+- Feel free to add any additional UI improvements you think would enhance the user experience
