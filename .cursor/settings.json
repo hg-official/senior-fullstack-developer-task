@@ -1,0 +1,42 @@
+{
+	"projectContext": {
+		"name": "Senior Full-Stack Developer Assessment",
+		"type": "coding-assessment",
+		"description": "This is a boilerplate project for evaluating senior full-stack developer candidates. The focus is on core functionality implementation rather than production-grade security features.",
+		"keyPoints": [
+			"This is a test/assessment project, not a production application",
+			"Authentication is simplified (no JWT) as it's not the focus of the assessment",
+			"Candidates should focus on implementing core business logic and architectural decisions",
+			"Security features are intentionally basic to allow focus on other aspects",
+			"The project serves as a starting point for candidates to demonstrate their skills"
+		],
+		"assessmentFocus": [
+			"Code organization and architecture",
+			"Business logic implementation",
+			"API design and implementation",
+			"Database interactions",
+			"Frontend-backend integration",
+			"Problem-solving approach"
+		],
+		"nonPriorities": [
+			"Production-grade security",
+			"Complex authentication mechanisms",
+			"Enterprise-level scalability",
+			"Advanced DevOps practices"
+		]
+	},
+	"aiAssistantGuidelines": {
+		"responseStyle": "educational and supportive",
+		"focusAreas": [
+			"Help with core functionality implementation",
+			"Guide on best practices for the assessment context",
+			"Provide explanations for architectural decisions",
+			"Assist with technical challenges while maintaining assessment integrity"
+		],
+		"avoidAreas": [
+			"Implementing complex security features",
+			"Adding unnecessary production-grade features",
+			"Overcomplicating the solution"
+		]
+	}
+}
