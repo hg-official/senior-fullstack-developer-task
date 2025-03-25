@@ -1,6 +1,21 @@
 # Senior Full-Stack Developer Assessment
 
-This project serves as a coding assessment for senior full-stack developer candidates. It's designed to evaluate your ability to implement core functionality, make architectural decisions, and demonstrate your technical skills.
+## Introduction
+
+Hello! If you are viewing this repository you are probably a candidate for HyperGuest senior backend developer, congrats!
+
+### Before we begin, a few important notes please!
+
+- Any AI tool is forbidden during this task. We already know Github copilot is a great tool, we don't need to test it :)
+- This task is designated to test your problem-solving skills, still, code quality do matters! submit a code you would like to read as well
+
+### At your sumption please include the next things
+
+- write a clear explanation of your implementation.
+- suggest improvements! the code in this repository is not perfect, what would you do differently?
+- Do not PR to this repo! please fork this repo and create your own PR to the forked copy ;)
+
+Good luck!
 
 ## Project Overview
 
@@ -115,21 +130,21 @@ This assessment evaluates your ability to:
 
 Your task is to implement the following changes:
 
-1. Modify the User entity to support multiple roles per user:
+1. User Role Management:
 
-   - Create a migration to change the `role` column to `roles`
-   - The new column should support a list of roles for each user
+   - The current system only supports a single role per user
+   - The application needs to support multiple roles for a single user
 
-2. Update the User status field:
+2. User Status Enhancement:
 
-   - Create a migration to modify the `status` column
-   - The new status should be an enum with values: "active", "not-active", "deleted"
+   - The current status field is a simple boolean
+   - The system needs to support more granular user status options: `Enabled`, `Disabled`,`Deleted`.
 
 3. Update both server and client code to support these changes
 
 4. Implement authorization check:
 
-   - Server should return unauthorized (401) if user's status is not "active"
+   - Server should return unauthorized (401) if user's status is `Deleted`
 
 5. Client-side Implementation Requirements:
    - All HTTP requests and data management must be handled through Vuex state management
@@ -138,3 +153,5 @@ Your task is to implement the following changes:
      - Editor page: accessible only to editors and admin users
      - Admin page: accessible only to admin users
    - Display the username after "Welcome" message on each page
+
+Note: Any database schema changes must be implemented through migration files.
