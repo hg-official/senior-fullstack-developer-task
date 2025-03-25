@@ -7,19 +7,18 @@ export class InitialUserRoleSetup1680000000000 implements MigrationInterface {
     try {
       await queryRunner.query(`
                 CREATE TABLE IF NOT EXISTS users (
-                    id INT AUTO_INCREMENT PRIMARY KEY,
-                    username VARCHAR(255) NOT NULL UNIQUE,
-                    role VARCHAR(50) NOT NULL DEFAULT 'User',
-                    status BOOLEAN NULL
-                ) ENGINE=InnoDB;
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    username TEXT NOT NULL UNIQUE,
+                    role TEXT NOT NULL DEFAULT 'User',
+                    status INTEGER NULL
+                )
             `);
 
       await queryRunner.query(`
-                INSERT INTO users (username, role, status) VALUES
-                ('admin_user', 'Admin', true),
-                ('regular_user', 'User', true),
-                ('editor_user', 'Editor', true)
-                ON DUPLICATE KEY UPDATE username=username;
+                INSERT OR IGNORE INTO users (username, role, status) VALUES
+                ('admin_user', 'Admin', 1),
+                ('regular_user', 'User', 1),
+                ('editor_user', 'Editor', 1)
             `);
     } catch (error) {
       console.error('Migration up error:', error);
