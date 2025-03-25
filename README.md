@@ -42,7 +42,14 @@ npm install
    - Copy `.env.example` to `.env` in the backend directory
    - No additional database setup is required as we're using SQLite
 
-4. Start the development servers:
+4. Run the database migrations
+
+```bash
+# Run typeorm migrations
+npm run migration:run
+```
+
+5. Start the development servers:
 
 ```bash
 # Start backend server (from backend directory)
@@ -99,11 +106,6 @@ This assessment evaluates your ability to:
 - `npm run migration:run` - Run pending migrations
 
 ### Frontend
-
 - `npm run dev` - Start the development server
 - `npm run build` - Build the application
 - `npm run preview` - Preview the production build
-
-## Support
-
-If you encounter any issues during setup or have questions about the assessment, please contact the assessment coordinator.
