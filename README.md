@@ -106,6 +106,35 @@ This assessment evaluates your ability to:
 - `npm run migration:run` - Run pending migrations
 
 ### Frontend
+
 - `npm run dev` - Start the development server
 - `npm run build` - Build the application
 - `npm run preview` - Preview the production build
+
+## Assessment Tasks
+
+Your task is to implement the following changes:
+
+1. Modify the User entity to support multiple roles per user:
+
+   - Create a migration to change the `role` column to `roles`
+   - The new column should support a list of roles for each user
+
+2. Update the User status field:
+
+   - Create a migration to modify the `status` column
+   - The new status should be an enum with values: "active", "not-active", "deleted"
+
+3. Update both server and client code to support these changes
+
+4. Implement authorization check:
+
+   - Server should return unauthorized (401) if user's status is not "active"
+
+5. Client-side Implementation Requirements:
+   - All HTTP requests and data management must be handled through Vuex state management
+   - Implement route guards for role-based access:
+     - Home page: accessible to all users (regular/editor/admin)
+     - Editor page: accessible only to editors and admin users
+     - Admin page: accessible only to admin users
+   - Display the username after "Welcome" message on each page

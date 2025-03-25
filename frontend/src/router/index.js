@@ -13,6 +13,16 @@ const routes = [
 		// Lazy loading for better performance
 		component: () => import("../views/Home.vue"),
 	},
+	{
+		path: "/admin",
+		name: "Admin",
+		component: () => import("../views/AdminView.vue"),
+	},
+	{
+		path: "/editor",
+		name: "Editor",
+		component: () => import("../views/EditorView.vue"),
+	},
 ]
 
 const router = createRouter({
