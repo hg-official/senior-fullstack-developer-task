@@ -154,4 +154,4 @@ Your task is to implement the following changes:
      - Admin page: accessible only to admin users
    - Display the username after "Welcome" message on each page
 
-Note: Any database schema changes must be implemented through migration files.
+⚠️ Note: Any database schema changes must be implemented through migration files.
