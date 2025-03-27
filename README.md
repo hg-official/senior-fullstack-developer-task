@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Hello! If you are viewing this repository you are probably a candidate for HyperGuest senior backend developer, congrats!
+Hello! If you are viewing this repository you are probably a candidate for HyperGuest senior fullstack developer, congrats!
 
 ### Before we begin, a few important notes please!
 
