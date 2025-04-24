@@ -2,164 +2,147 @@
 
 ## Introduction
 
-Hello! If you are viewing this repository you are probably a candidate for HyperGuest senior fullstack developer, congrats!
+Welcome! If you're reviewing this repository, you are likely a candidate for the Senior Full-Stack Developer position at HyperGuest—congratulations on making it this far.
 
-### Before we begin, a few important notes please!
+This task is designed to evaluate your problem-solving skills and full-stack development capabilities.
 
-- Any AI tool is forbidden during this task. We already know Github copilot is a great tool, we don't need to test it :)
-- This task is designated to test your problem-solving skills, still, code quality do matters! submit a code you would like to read as well
+> **Important:** While the frontend uses Vue.js (with Vuex and Vue Router), **prior experience with Vue.js is not required**. The task focuses on functionality, integration, and clean code.
 
-### At your sumption please include the next things
+---
 
-- write a clear explanation of your implementation.
-- suggest improvements! the code in this repository is not perfect, what would you do differently?
-- Do not PR to this repo! please fork this repo and create your own PR to the forked copy ;)
+### Please note:
 
-Good luck!
+- **Do not use AI tools (e.g., GitHub Copilot)** for this task. We are evaluating your skills—not those of an assistant.
+- Code quality matters. Please write clean, readable, and maintainable code.
+- Do **not submit a pull request to this repository**. Fork it and open a pull request in your own fork.
+
+### With your submission, include:
+
+- A brief explanation of your implementation.
+- Suggestions for improvements or architectural changes you would recommend. The existing codebase is intentionally not perfect.
+
+---
 
 ## Project Overview
 
-This is a full-stack application with the following tech stack:
+This is a full-stack application using the following technologies:
 
-- Backend: Node.js with TypeScript, Express, and TypeORM
-- Frontend: Vue.js (Vuex, Vue-Router, Vite)
-- Database: SQLite (for simplicity and quick setup)
+- **Backend**: Node.js, TypeScript, Express, TypeORM
+- **Frontend**: Vue.js (Vuex, Vue Router, Vite)
+- **Database**: SQLite
+
+---
 
 ## Prerequisites
 
 - Node.js (v16 or higher)
-- npm or yarn package manager
+- npm or yarn
 - Git
+
+---
 
 ## Getting Started
 
-1. Clone the repository:
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd <project-directory>
+   ```
 
-```bash
-git clone <repository-url>
-cd <project-directory>
-```
+2. **Install dependencies:**
+   ```bash
+   # Backend
+   cd backend
+   npm install
 
-2. Install dependencies:
+   # Frontend
+   cd ../frontend
+   npm install
+   ```
 
-```bash
-# Install backend dependencies
-cd backend
-npm install
+3. **Set environment variables:**
+   - Copy `.env.example` to `.env` in the backend directory.
+   - SQLite is used, so no additional database setup is required.
 
-# Install frontend dependencies
-cd ../frontend
-npm install
-```
+4. **Run database migrations:**
+   ```bash
+   npm run migration:run
+   ```
 
-3. Set up environment variables:
+5. **Start development servers:**
+   ```bash
+   # Backend (from backend directory)
+   npm run start:dev
 
-   - Copy `.env.example` to `.env` in the backend directory
-   - No additional database setup is required as we're using SQLite
+   # Frontend (from frontend directory)
+   npm run dev
+   ```
 
-4. Run the database migrations
+- Application endpoints:
+  - Frontend: http://localhost:5173
+  - Backend: http://localhost:3000
 
-```bash
-# Run typeorm migrations
-npm run migration:run
-```
-
-5. Start the development servers:
-
-```bash
-# Start backend server (from backend directory)
-npm run start:dev
-
-# Start frontend server (from frontend directory)
-npm run dev
-```
-
-The application will be available at:
-
-- Frontend: http://localhost:5173
-- Backend: http://localhost:3000
+---
 
 ## Project Structure
 
 ```
-├── backend/                 # Backend application
-│   ├── src/                # Source code
-│   ├── database.sqlite     # SQLite database file
-│   └── package.json        # Backend dependencies
-├── frontend/               # Frontend application
-│   ├── src/               # Source code
-│   └── package.json       # Frontend dependencies
-└── README.md              # This file
+├── backend/        # Backend application
+│   ├── src/        # Source code
+│   ├── database.sqlite
+│   └── package.json
+├── frontend/       # Frontend application
+│   ├── src/        # Source code
+│   └── package.json
+└── README.md
 ```
 
-## Assessment Focus
+---
 
-This assessment evaluates your ability to:
+## Assessment Objectives
 
-- Implement core business logic
-- Design and implement APIs
-- Structure and organize code
-- Handle database operations
-- Integrate frontend and backend
-- Solve technical challenges
+You will be evaluated on your ability to:
 
-## Important Notes
+- Implement backend business logic
+- Design and expose RESTful APIs
+- Modify and migrate database schema
+- Integrate backend with frontend
+- Manage application state using Vuex
+- Implement routing and authorization
 
-- The project uses SQLite for simplicity and quick setup
-- Authentication is intentionally simplified for this assessment
-- Focus on implementing the required functionality rather than adding complex security features
-- The database will be automatically created when you first run the application
+---
 
-## Available Scripts
+## Tasks
 
-### Backend
+Implement the following features:
 
-- `npm run start:dev` - Start the development server
-- `npm run build` - Build the application
-- `npm run typeorm` - Run TypeORM CLI commands
-- `npm run migration:generate` - Generate a new migration
-- `npm run migration:run` - Run pending migrations
+1. **User Role Management**
+   - Replace the current single-role-per-user setup with support for **multiple roles**.
 
-### Frontend
+2. **User Status Enhancement**
+   - Replace the current boolean status field with a new enum: `Enabled`, `Disabled`, and `Deleted`.
 
-- `npm run dev` - Start the development server
-- `npm run build` - Build the application
-- `npm run preview` - Preview the production build
+3. **Update both backend and frontend** to support the above changes.
 
-## Assessment Tasks
+4. **Authorization Check**
+   - The server should return HTTP 401 Unauthorized if a user's status is `Deleted`.
 
-Your task is to implement the following changes:
+5. **Client-Side Implementation Requirements**
+   - Use Vuex for all HTTP requests and state management.
+   - Implement role-based route guards:
+     - Home page: accessible to all users (`regular`, `editor`, `admin`)
+     - Editor page: accessible to `editor` and `admin` users
+     - Admin page: accessible only to `admin` users
+   - Display the username in the welcome message on each page.
 
-1. User Role Management:
+> ⚠️ **All database schema changes must be implemented using TypeORM migration files.**
 
-   - The current system only supports a single role per user
-   - The application needs to support multiple roles for a single user
+---
 
-2. User Status Enhancement:
+## Bonus Task
 
-   - The current status field is a simple boolean
-   - The system needs to support more granular user status options: `Enabled`, `Disabled`,`Deleted`.
+As a bonus, enhance the user interface:
 
-3. Update both server and client code to support these changes
-
-4. Implement authorization check:
-
-   - Server should return unauthorized (401) if user's status is `Deleted`
-
-5. Client-side Implementation Requirements:
-   - All HTTP requests and data management must be handled through Vuex state management
-   - Implement route guards for role-based access:
-     - Home page: accessible to all users (regular/editor/admin)
-     - Editor page: accessible only to editors and admin users
-     - Admin page: accessible only to admin users
-   - Display the username after "Welcome" message on each page
-
-⚠️ Note: Any database schema changes must be implemented through migration files.
-
-## ✨ Bonus Assignment
-
-Enhance the user interface by redesigning the navigation bar:
-
-- You can use third-party UI libraries such as Vuetify
-- The design should be modern and user-friendly
-- Feel free to add any additional UI improvements you think would enhance the user experience
+- Redesign the navigation bar to make it more modern and user-friendly.
+- You may use UI libraries such as **Vuetify** or others.
+- Feel free to introduce additional UI enhancements that improve the user experience.
