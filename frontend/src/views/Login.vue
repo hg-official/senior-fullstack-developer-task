@@ -10,9 +10,10 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
-import { useRouter } from "vue-router"
-import axios from "axios"
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+const store = useStore();
 
 const router = useRouter()
 const username = ref("")
@@ -20,14 +21,11 @@ const error = ref("")
 
 const handleLogin = async () => {
 	try {
-		error.value = ""
+		const userLoggedIn = await store.dispatch("fetchUsers", username.value);
 
-		const response = await axios.post(`/api/users/login/${username.value}`)
-
-		if (response.data) {
+		if (userLoggedIn) {
 			router.push({
-				path: "/home",
-				query: { username: username.value },
+				path: "/home"
 			})
 		}
 	} catch (err) {
