@@ -12,27 +12,21 @@
 <script setup>
 import { ref } from "vue"
 import { useRouter } from "vue-router"
-import axios from "axios"
+import { useStore } from "vuex"
 
 const router = useRouter()
+const store = useStore()
 const username = ref("")
 const error = ref("")
 
 const handleLogin = async () => {
 	try {
 		error.value = ""
-
-		const response = await axios.post(`/api/users/login/${username.value}`)
-
-		if (response.data) {
-			router.push({
-				path: "/home",
-				query: { username: username.value },
-			})
-		}
+		await store.dispatch('login', username.value)
+		router.push('/home')
 	} catch (err) {
-		error.value =
-			err.response?.data?.message || "Login failed. Please try again."
+		console.log(err)
+		error.value = err.response?.data?.message || "Login failed. Please try again."
 	}
 }
 </script>
