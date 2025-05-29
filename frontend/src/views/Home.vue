@@ -1,19 +1,16 @@
-<template>
-	<div class="home">
-		<h1>Home Page</h1>
-		<p>Welcome {{ username }}!</p>
-	</div>
-</template>
-
 <script setup>
-import { ref } from "vue"
+import { useStore } from "vuex";
+import { onMounted } from "vue";
 
-const username = ref("")
+const store = useStore();
+onMounted(() => {
+  store.dispatch("initialize");
+});
 </script>
 
-<style scoped>
-.home {
-	padding: 2rem;
-	text-align: center;
-}
-</style>
+<template>
+  <div>
+    <h1>Home Page</h1>
+    <p>Welcome {{ store.getters.username }}!</p>
+  </div>
+</template>
