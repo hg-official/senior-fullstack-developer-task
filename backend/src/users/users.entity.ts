@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { UserStatus } from './users.interfaces';
+import { EUserStatus } from './users.interfaces';
 
 @Entity('users')
 export class User {
@@ -13,5 +13,5 @@ export class User {
   roles: string;
 
   @Column()
-  status: UserStatus;
+  status: EUserStatus;
 }

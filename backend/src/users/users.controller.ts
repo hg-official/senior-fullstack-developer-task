@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './users.entity';
-import { UserStatus } from './users.interfaces';
+import { EUserStatus } from './users.interfaces';
 import { Response } from 'express';
 
 @Controller('users')

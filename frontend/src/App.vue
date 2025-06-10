@@ -1,5 +1,8 @@
 <template>
 	<div>
+    <div v-if="username">
+      Welcome, {{username}}!
+    </div>
 		<Navbar v-if="showNavbar" />
 		<router-view />
 		<button v-if="showNavbar" @click="handleLogout">Logout</button>
@@ -20,12 +23,11 @@ router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.meta.requiresAuth;
 
   if (requiresAuth) {
-    // debugger;
     try {
       const username = store.getters.getUsername;
-      console.log(username);
-      const res = await fetch('/api/check-auth/'+ username, {
+      const res = await fetch('/api' + to.path, {
         credentials: 'include', // include cookies
+        headers: {"token": username},
       });
 
       if (!res.ok) throw new Error();
@@ -42,6 +44,16 @@ const showNavbar = computed(() => route.path !== "/")
 
 const handleLogout = () => {
 	router.push("/")
+}
+
+</script>
+<script>
+export default {
+  computed: {
+    username() {
+      return this.$store.getters.getUsername;
+    }
+  },
 }
 </script>
 
