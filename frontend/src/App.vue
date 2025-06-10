@@ -10,9 +10,34 @@
 import { computed } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import Navbar from "./components/Navbar.vue"
+import store from "./store/";
 
 const route = useRoute()
 const router = useRouter()
+
+// Vue route guard (e.g., router.js)
+router.beforeEach(async (to, from, next) => {
+  const requiresAuth = to.meta.requiresAuth;
+
+  if (requiresAuth) {
+    // debugger;
+    try {
+      const username = store.getters.getUsername;
+      console.log(username);
+      const res = await fetch('/api/check-auth/'+ username, {
+        credentials: 'include', // include cookies
+      });
+
+      if (!res.ok) throw new Error();
+      next();
+    } catch {
+      next('/');
+    }
+  } else {
+    next();
+  }
+});
+
 const showNavbar = computed(() => route.path !== "/")
 
 const handleLogout = () => {

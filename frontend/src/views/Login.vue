@@ -13,6 +13,7 @@
 import { ref } from "vue"
 import { useRouter } from "vue-router"
 import axios from "axios"
+import store from "../store/index.js";
 
 const router = useRouter()
 const username = ref("")
@@ -25,12 +26,14 @@ const handleLogin = async () => {
 		const response = await axios.post(`/api/users/login/${username.value}`)
 
 		if (response.data) {
-			router.push({
+      store.commit('setUsername', response.data.username);
+			await router.push({
 				path: "/home",
 				query: { username: username.value },
 			})
 		}
 	} catch (err) {
+    console.log(err);
 		error.value =
 			err.response?.data?.message || "Login failed. Please try again."
 	}

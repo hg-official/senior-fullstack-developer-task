@@ -12,16 +12,19 @@ const routes = [
 		name: "Home",
 		// Lazy loading for better performance
 		component: () => import("../views/Home.vue"),
+		meta: { requiresAuth: true },
 	},
 	{
 		path: "/admin",
 		name: "Admin",
 		component: () => import("../views/AdminView.vue"),
+		meta: { requiresAuth: true }
 	},
 	{
 		path: "/editor",
 		name: "Editor",
 		component: () => import("../views/EditorView.vue"),
+		meta: { requiresAuth: true }
 	},
 ]
 
